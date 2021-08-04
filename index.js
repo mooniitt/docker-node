@@ -4,7 +4,11 @@ let accessCount = 0;
 
 const createServer = http.createServer((req, res) => {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.end(`访问次数: ${++accessCount}`);
+  if(req.url === '/'){
+    res.end(`访问次数: ${++accessCount}`);
+  }else {
+    res.end()
+  }
 });
 
 // createServer.addListener()
