@@ -2,8 +2,10 @@ FROM node
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 8080
 
-ENTRYPOINT [ "-p 3000:3000" ]
+ENTRYPOINT [ "-p 8080:8080" ]
+
+RUN npm install
 
 CMD [ "node", "index.js" ]
