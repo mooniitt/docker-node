@@ -1,12 +1,16 @@
-FROM node
+FROM node:16
 
-COPY . .
+RUN mkdir -p /usr/src/server
+COPY . /usr/src/server
 
-EXPOSE 8080 
+WORKDIR /usr/src/server
 
+RUN rm -rf node_modules package-lock.json
+
+RUN npm install
+
+EXPOSE 8080
 # ENTRYPOINT [ "-p 3000:3000" ]
-
-RUN npm install websocket
 
 # CMD [ "node", "index.js" ]
 CMD [ "node", "websocket.js" ]
