@@ -1,18 +1,22 @@
 FROM node:16
 
-RUN mkdir -p /usr/src/server
-COPY . /usr/src/server
+# RUN mkdir -p /code
+# COPY . /usr/src/server
 
-WORKDIR /usr/src/server
+WORKDIR /code
 
-RUN rm -rf node_modules package-lock.json
+COPY package.json /code
+# RUN rm -rf node_modules package-lock.json
+# COPY . /code
 
 RUN npm install
+
+COPY . /code
 
 EXPOSE 8080
 # ENTRYPOINT [ "-p 3000:3000" ]
 
 # CMD [ "node", "index.js" ]
-CMD [ "node", "websocket.js" ]
+CMD [ "node", "webscoket.js" ]
 
 # RUN node index.js
