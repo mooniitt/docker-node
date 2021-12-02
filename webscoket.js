@@ -3,7 +3,15 @@ var WebSocketServer = require("websocket").server;
 var http = require("http");
 
 var server = http.createServer(function (request, response) {
-  console.log(new Date() + " Received request for " + request.url);
+  console.log(new Date() + " Received request for " + request.method);
+  let data = "";
+  request.on("data", (chunk) => {
+    data += chunk;
+  });
+  request.on("end", () => {
+    console.log(JSON.parse(data)); // 'Buy the milk'
+   // console.log(JSON.parse(data).quantity);
+  });
   response.writeHead(204);
   response.end();
 });
